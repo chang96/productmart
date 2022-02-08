@@ -99,7 +99,7 @@ async function isLoggedIn(id){
     auth.onAuthStateChanged(async user => {
         if(user){
             console.log(user)
-            window.location = "/dashboard/quote1.html"
+            window.location = "/dashboard/request.html"
             
         } else {
             document.getElementById(id).classList.add("modal-trigger")
