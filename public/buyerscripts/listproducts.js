@@ -66,8 +66,7 @@ const setLists = function (data) {
 //         ]
 $(document).ready(()=>{
     auth.onAuthStateChanged(async user => {
-        console.log(user.emailVerified)
-        if(user.emailVerified === true || 1== 1){
+        if(1 == 1){
             db.collection('products').get().then(props=>{
                 // const props = d.docs[0].data()
                 // name.innerHTML = props.firstname
