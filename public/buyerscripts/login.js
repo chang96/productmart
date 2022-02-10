@@ -24,7 +24,8 @@ async function login(){
         const u = await finder('email', email)
         auth.onAuthStateChanged(async user=>{
             if(user.emailVerified === true || user.email=='rorewole@gmail.com'){
-                alert("you will be logged in now") 
+                // alert("you will be logged in now") 
+                window.location.reload()
             } else {
                 alert('To continue, Kindly login to your email and verify it')
             }
@@ -42,3 +43,46 @@ async function login(){
 // needed forget password page
 // verify email page
 // 
+
+
+
+
+
+
+$(document).ready(function(){
+    auth.onAuthStateChanged(async user => {
+    if(user){
+        const mail = user.email
+        document.getElementById("loggedin").innerHTML = `<a style="cursor: pointer; color:red" onclick="signout()" >Sign Out</a>`
+        
+    } 
+})
+ 
+}) 
+
+
+
+async function isLoggedIn(id){
+    console.log(id)
+    auth.onAuthStateChanged(async user => {
+        if(user){
+            console.log(user)
+            window.location = "/dashboard/request.html"
+            
+        } else {
+            document.getElementById(id).classList.add("modal-trigger")
+            document.getElementById(id).href = "#modal1"
+        }
+    })
+
+    
+}
+
+
+function signout(){
+    auth.signOut().then(() => {
+        window.localStorage.clear()
+        // redirect to home page
+        window.location.href='/index.html'
+    })
+}

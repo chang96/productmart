@@ -34,11 +34,12 @@ async function storeDocs(){
                     sendBy: sendBy,
                     who: owner,
                     productid: localStorage.getItem("id"),
-                    date: date
+                    date: date,
                 })
              
                    alert("Product Details saved")
-                    window.location = "/dashboard/dashboard.html"
+                   localStorage.setItem("id", newDoc.id)
+                    window.location = "/dashboard/congratspage.html"
                 
             }
         } catch(e){
