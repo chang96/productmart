@@ -18,6 +18,7 @@ async function storeDocs(){
     const inspectionType = inspection
     const extraInspection = document.getElementById("extraInspection").value
     const sendBy = sendingBy
+    const date = new Date().toDateString()
 
     console.log(sendBy, inspectionType)
     auth.onAuthStateChanged(async user => {
@@ -32,7 +33,8 @@ async function storeDocs(){
                     extraInspection: extraInspection,
                     sendBy: sendBy,
                     who: owner,
-                    productid: localStorage.getItem("id")
+                    productid: localStorage.getItem("id"),
+                    date: date
                 })
              
                    alert("Product Details saved")
