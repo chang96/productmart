@@ -150,12 +150,12 @@
         }
 
 
-        #lastSection {
+        /* #lastSection {
         colorrgba(39, 116, 75, 0.5);
             font-size:24px;
             margin-top: 70px;
 
-        }
+        } */
 
         /*graph*/
         .barchart-Wrapper {
@@ -635,11 +635,11 @@
                                     <div class="row" style="padding-bottom: 0;">
                                     <div class="col-lg-6" style="text-align: left;">
                                         <p style="padding-left: 20px;">Packaging units:</p>
-                                        <input type="text" style="margin-left: 20px; margin-bottom: 0 !important;">
+                                        <input id="unit" type="text" style="margin-left: 20px; margin-bottom: 0 !important;">
                                     </div>
                                     <div class="col-lg-6" style="text-align: left">
                                         <p>weight of packaging:</p>
-                                        <select style="margin-bottom: 0 !important;">
+                                        <select id="weight" style="margin-bottom: 0 !important;">
                                             <option>KG</option>
                                             <option>TONNES</option>
                                             <option>POUNDS</option>
@@ -662,7 +662,7 @@
                                     <div class="row" style="padding-left: 20px;">
                                         <div class="col-lg-6" style="text-align: left">
                                             <p style="padding-left: 20px;">Price of package:</p>
-                                            <input type="text" style="padding-left: 20px;">
+                                            <input id="price" type="text" style="padding-left: 20px;">
                                         </div>
 
                                     </div>
@@ -687,7 +687,7 @@
                                     <div class="row">
                                         <div class="col-lg-6" style="text-align: left;">
                                             <p style="padding-left: 20px;">Shipment packaging:</p>
-                                            <select style="margin-left: 20px;" >
+                                            <select id="shipping" style="margin-left: 20px;" >
                                                 <option>KG</option>
                                                 <option>TONNES</option>
                                                 <option>POUNDS</option>
@@ -695,29 +695,29 @@
 
                                             <p style="padding-left: 20px;">Dimension of shipment package:</p>
 
-                                                    <select style="margin-left: 20px;" >
+                                                    <select id="dimension" style="margin-left: 20px;" >
                                                         <option>KG</option>
                                                         <option>TONNES</option>
                                                         <option>POUNDS</option>
                                                     </select>
                                             <p style="padding-left: 20px;"> Number Of Units Per Shipment Package:</p>
-                                            <input type="text" style="margin-left: 20px; margin-bottom: 0!important;height: 70px;  ">
+                                            <input id="numberOfUnitsPerShipment" type="text" style="margin-left: 20px; margin-bottom: 0!important;height: 70px;  ">
 
                                         </div>
                                         <div class="col-lg-6" style="text-align: left">
                                             <p>weight of shipment package:</p>
-                                            <select>
+                                            <select id="shippingWeight">
                                                 <option>KG</option>
                                                 <option>TONNES</option>
                                                 <option>POUNDS</option>
                                             </select>
 
                                             <p>Price of  shipment:</p>
-                                            <input type="text">
+                                            <input id="priceOfShipment" type="text">
                                             <p>Shipping in container</p>
                                             <p style="color:#cacaca;">How many units can fit in a 20 foot shipping container? This is useful
                                                 information for the buyer to see the size of the shipment</p>
-                                            <input type="text">
+                                            <input id="shippingInContainer" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -733,8 +733,8 @@
 
                             <div class="col-lg-12" style="text-align: center;">
 
-                                <p style="margin-top: 2%;"><button class="paybtn" type="submit">SAVE AND CONTINUE LATER</button></p>
-                                <p style="margin-top: 2%; margin-bottom: 10%;"><button class="blurpaybtn">NEXT</button></p>
+                                <p style="margin-top: 2%;"><button id="save" onclick="storeDocs(this.id)" class="paybtn" type="button">SAVE AND CONTINUE LATER</button></p>
+                                <p style="margin-top: 2%; margin-bottom: 10%;"><button id="next" onclick="storeDocs(this.id)" class="blurpaybtn">NEXT</button></p>
 
 
 
@@ -751,8 +751,36 @@
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCuIQcv2SJA5DqONkfkRDuM-9CxZAh0JNA",
+    authDomain: "productxmartx.firebaseapp.com",
+    projectId: "productxmartx",
+    storageBucket: "productxmartx.appspot.com",
+    messagingSenderId: "526006862845",
+    appId: "1:526006862845:web:98c44f4701fb580b9f0f94",
+    measurementId: "G-2TPETBSSET"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const storage = firebase.storage()
+</script>
 <script src="assets/js/sidenav.js"></script>
 <script src="assets/js/Qurnex.js"></script>
 <script src="assets/js/bootstrap.js"></script>
+<script src="../admin/packaging.js"></script>
 </body>
 </html>

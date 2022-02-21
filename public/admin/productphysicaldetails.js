@@ -32,7 +32,7 @@ async function storeDocs(btntype){
             const productUpdate = await update(newDoc, userId[0].currentproduct).then(res=> "updated").catch(e=> e)
 
             if(btntype === "next"){
-                window.location.href = "/Dashboard/upload3.html"
+                window.locatio = "/dashboard/upload3.html"
             } else {
                 alert("Product Details saved")
             }

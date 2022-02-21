@@ -1,25 +1,42 @@
 async function storeDocs(btntype){
-    const files = document.getElementById('upload')
-    console.log(files)
+
+    const unit = document.getElementById("unit").value
+    const weight = document.getElementById("weight").value
+
+    const price = document.getElementById("price").value
+    const shippingPackageUnit = document.getElementById("shipping").value
+    const shippingWeight = document.getElementById("shippingWeight").value
+    const dimension = document.getElementById("dimension").value
+    const priceOfShipment = document.getElementById("priceOfShipment").value
+    const numberOfUnitsPerShipment = document.getElementById("numberOfUnitsPerShipment").value
+    const shippingInContainer = document.getElementById("shippingInContainer").value
+
     return auth.onAuthStateChanged(async user => {
         if(user){
-            console.log(user.email)
-            const owner =  user.email
+            let owner =  user.email
             // console.log(files, option)
             const urls = []
-            var b =  await store(urls, "/productImages/", files)
+            // var b =  await store(urls, "/productImages/", files)
             const newDoc = {
-                url: b,
-                stage: 3
+                // url: b,
+                unit: unit,
+                weight: weight,
+                price: price,
+                shippingPackageUnit: shippingPackageUnit,
+                shippingWeight: shippingWeight,
+                dimension: dimension,
+                priceOfShipment: priceOfShipment,
+                numberOfUnitsPerShipment: numberOfUnitsPerShipment,
+                shippingInContainer: shippingInContainer
             }
-
             let userId = await finder("email", owner)
             const productUpdate = await update("products", newDoc, userId[0].currentproduct).then(res=> "updated").catch(e=> e)
             console.log(productUpdate)
             if(btntype === "next"){
-                window.location = "/dashboard/upload4.html"
+                window.location.href = "/dashboard/sdashboard.html"
             } else {
                 alert("Product Details saved")
+                // window.location.href = "/dashboard/packaging.html"
             }
         }
     })

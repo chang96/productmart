@@ -22,7 +22,6 @@ async function register(){
         alert("Passwords must be the same")
         return
     } else {
-        let date = new Date().toDateString()
         let signedup = await auth.createUserWithEmailAndPassword(email, password).then(c => "signedup").catch(e=> {
             alert(e.message)
             return
@@ -34,14 +33,15 @@ async function register(){
         }).catch(function(error) {
             return error
         });
+        let date = new Date().toDateString()
         let writeToDB = signedup === "signedup"? await db.collection('users').add({
             firstname: firstname,
             lastname: lastname,
             email: email,
             loggedIn:false,
             agreed:"yes", 
-            buyer:"no",
-            seller:"yes",
+            buyer:"yes",
+            seller:"no",
             date: date
         }).then((u)=>{
             console.log('user added')

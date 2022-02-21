@@ -35,12 +35,13 @@
             1:"upload2.html",
             2:"upload3.html",
             3:"upload4.html",
-            // 4:"upload5.html",
+            4:"upload5.html",
         }
         function addNewProduct(){
             auth.onAuthStateChanged(async user =>{
                 const email = user.email
                 const finding = await finder("owner", email)
+                let x = finding === undefined ? window.location = "/dashboard/upload1.html" : ""
                 const stage = finding[0].stage
                 const routing = routeList[stage]
                 if(routing === undefined){

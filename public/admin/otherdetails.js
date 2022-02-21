@@ -1,25 +1,30 @@
 async function storeDocs(btntype){
-    const files = document.getElementById('upload')
-    console.log(files)
+
+    const qty = document.getElementById("qty").value
+    const min = document.getElementById("min").value
+
+    const frequency = document.getElementById("COO").value
     return auth.onAuthStateChanged(async user => {
         if(user){
-            console.log(user.email)
-            const owner =  user.email
+            let owner =  user.email
             // console.log(files, option)
             const urls = []
-            var b =  await store(urls, "/productImages/", files)
+            // var b =  await store(urls, "/productImages/", files)
             const newDoc = {
-                url: b,
-                stage: 3
+                // url: b,
+                quantity: qty, 
+                stage: 5,
+                minQuantity:qty,
+                frequency: frequency
             }
-
             let userId = await finder("email", owner)
             const productUpdate = await update("products", newDoc, userId[0].currentproduct).then(res=> "updated").catch(e=> e)
             console.log(productUpdate)
             if(btntype === "next"){
-                window.location = "/dashboard/upload4.html"
+                window.location.href = "/dashboard/packaging.html"
             } else {
                 alert("Product Details saved")
+                // window.location.href = "/dashboard/packaging.html"
             }
         }
     })

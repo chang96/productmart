@@ -22,10 +22,16 @@ async function login(){
     console.log(email, password)
     auth.signInWithEmailAndPassword(email, password).then(async c => {
         const u = await finder('email', email)
+        console.log(u)
         auth.onAuthStateChanged(async user=>{
             if(user.emailVerified === true || user.email=='rorewole@gmail.com'){
                 // alert("you will be logged in now") 
-                window.location.reload()
+                if(u[0].buyer === "yes"){
+                    window.location.reload()
+                } else {
+                    window.location = "/dashboard/sdashboard.html"
+                }
+               
             } else {
                 alert('To continue, Kindly login to your email and verify it')
             }

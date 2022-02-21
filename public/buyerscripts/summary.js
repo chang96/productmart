@@ -7,7 +7,7 @@ $(document).ready(function(){
     auth.onAuthStateChanged(async user => {
     if(user){
         const mail = user.email
-        const id = "m4tDG4jl3qIBS4Q6wxvC" || localStorage.getItem("id")
+        const id = localStorage.getItem("id")
         const u = await findReqProduct(id)
         console.log(u)
         let date = new Date().toUTCString()

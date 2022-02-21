@@ -606,7 +606,7 @@
                        <p style="color: black; font-weight: 500; margin-top: 10%;font-size: 30px;"><strong>Minimum Order Quantity:</strong></p>
                         <p style="color: #cacaca; font-weight: 500; text-align: justify;margin-top:3%;margin-left: 33%; font-size: 27px;">Minimum number of units customers<br>
                             can request to buy for this product</p>
-                        <input type="text" class="form-control"  required="" style="height:70px; width: 30%; margin-top: 3%;">
+                        <input type="text" class="form-control" id="min"  required="" style="height:70px; width: 30%; margin-top: 3%;">
 
                         <p style="color: black; font-weight: 500; margin-top: 3%; margin-bottom: 2%;font-size: 27px; "><strong>Supply Ability:</strong></p>
                         <p style="color: #cacaca; font-weight: 500; text-align: justify;margin-top:3%; margin-left: 33%;font-size: 27px; margin-bottom: 5%; ">Please specify how much
@@ -629,7 +629,7 @@
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-4">
                                     <p style="font-size: 27px;"><strong>Quantity</strong></p>
-                                    <input type="number" placeholder="e.g 1000" style="height: 70px; text-align: center">
+                                    <input type="number" id="qty" placeholder="e.g 1000" style="height: 70px; text-align: center">
 
                                 </div>
                                 <div class="col-lg-4">
@@ -667,7 +667,7 @@
 
                         <div class="col-lg-12" style="text-align: center; margin-top:3%;">
 
-                            <p style=""><button class="paybtn" type="submit">SAVE AND CONTINUE LATER</button></p>
+                            <p style=""><button onclick="storeDocs(this.id)" class="paybtn" id="save" type="button">SAVE AND CONTINUE LATER</button></p>
 
                         </div>
                     </div>
@@ -699,7 +699,7 @@
                     <div class="row">
 
                         <div class="col-lg-12" style="text-align: center; margin-top:2%;">
-                            <p style="margin-bottom: 10%;"><button class="blurpaybtn">SUBMIT</button></p>
+                            <p style="margin-bottom: 10%;"><button id="next" onclick="storeDocs(this.id)" class="blurpaybtn">SUBMIT</button></p>
 
                         </div>
                     </div>
@@ -750,8 +750,36 @@
         });
     });
 </script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCuIQcv2SJA5DqONkfkRDuM-9CxZAh0JNA",
+    authDomain: "productxmartx.firebaseapp.com",
+    projectId: "productxmartx",
+    storageBucket: "productxmartx.appspot.com",
+    messagingSenderId: "526006862845",
+    appId: "1:526006862845:web:98c44f4701fb580b9f0f94",
+    measurementId: "G-2TPETBSSET"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const storage = firebase.storage()
+</script>
 <script src="assets/js/sidenav.js"></script>
 <script src="assets/js/Qurnex.js"></script>
 <script src="assets/js/bootstrap.js"></script>
+<script src="../admin/otherdetails.js"></script>
 </body>
 </html>

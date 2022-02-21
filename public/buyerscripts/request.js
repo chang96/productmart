@@ -35,6 +35,7 @@ async function storeDocs(){
                     who: owner,
                     productid: localStorage.getItem("id"),
                     date: date,
+                    status:"Awaiting Quote"
                 })
              
                    alert("Product Details saved")
@@ -141,3 +142,67 @@ function checkbox(id){
 
     return id
 }
+
+$(document).ready(function(){
+    var currentUser = firebase.auth().currentUser
+    auth.onAuthStateChanged(async user => {
+    if(user){
+        const mail = user.email
+        const id = localStorage.getItem("id")
+        const u = await findProduct(id)
+        console.log(u)
+        const arr = [
+            {id:"image", value: u.url},
+            
+            
+        ]
+        populate(arr)
+    } else {
+        const id = localStorage.getItem("id")
+        const u = await findProduct(id)
+        console.log(u)
+        const arr = [
+            {id:"image", value: u.url[0]},
+          
+         
+
+        ]
+        populate(arr)
+    }
+})
+ 
+}) 
+
+async function findUser(email){
+    return await db.collection('users').where("email", '==', email).get().then(data=>{
+        return data.docs[0].data()
+    })
+}
+
+async function findId(email){
+    return await db.collection('users').where("email", '==', email).get().then(data=>{
+        return data.docs[0].id
+    })
+}
+
+async function findProduct(id){
+    return await db.collection('products').doc(id).get().then(data=>{
+        return data.data()
+    })
+}
+
+function populate(arr){
+    return arr.map(element=>{
+        if(element.id == 'image'){
+        return document.getElementById(element.id).src = element.value
+        }
+        else
+        return document.getElementById(element.id).innerHTML = element.value
+    })
+}
+
+
+
+
+
+

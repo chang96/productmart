@@ -19,7 +19,7 @@ const setLists = function (data) {
                     <div style=" padding: 7px">
                         <div  class="container">
                             <div  class="card" style="box-sizing: content-box;">
-                                <p style="text-align: center"><strong>Maize-NBL-18</strong></p>
+                                <p style="text-align: center"><strong>${data.productName}</strong></p>
 
                                 <div style="box-sizing: content-box; width:100%">
 
